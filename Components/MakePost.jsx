@@ -39,7 +39,7 @@ export default function MakePost() {
         }} />
       <button
         type="submit"
-        className='pt-3 text-blue-400 p-1'>
+        className='pt-3 text-blue-600 p-1'>
         Submit
       </button>
       <div>
