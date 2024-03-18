@@ -1,4 +1,5 @@
 import { PostContext } from '@/context/postContext';
+import axios from 'axios';
 import React, { useContext, useState } from 'react'
 
 export default function MakePost() {
@@ -6,13 +7,21 @@ export default function MakePost() {
   const { POSTS, setPOSTS } = useContext(PostContext);
   const [postTitle, setPostTitle] = useState('');
   const [postLink, setPostLink] = useState('');
+  const [postCategory, setPostCategory] = useState('');
 
   // Function to handle form submission
   const submitHandler = (e) => {
     e.preventDefault();
-    setPOSTS([...POSTS, { title: postTitle, link: postLink }]);
+    const data = { title: postTitle, link: postLink, category: postCategory }
+    console.log(data)
+    axios.post('/api/addPost', data)
+      .then(res => console.log(res))
+      .catch(e => console.log(e))
+    // setPOSTS([...POSTS, { title: postTitle, link: postLink }]);
+
     setPostTitle('');
     setPostLink('');
+    setPostCategory('');
   }
 
   return (
@@ -37,6 +46,17 @@ export default function MakePost() {
         onChange={(e) => {
           setPostLink(e.target.value)
         }} />
+      <input
+        className='border-gray-800 p-1 w-full focus:border-0'
+        type="text"
+        name="link"
+        placeholder='Category'
+        autoComplete='off'
+        value={postCategory}
+        onChange={(e) => {
+          setPostCategory(e.target.value)
+        }} />
+
       <button
         type="submit"
         className='pt-3 text-blue-600 p-1'>
