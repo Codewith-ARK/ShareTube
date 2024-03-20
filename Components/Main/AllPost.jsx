@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import Post from './Post';
+import Post from '../Post/Post';
 import { PostContext } from '@/context/postContext';
 
-export default function Posts() {
+export default function AllPost() {
   const { POSTS, setPOSTS } = useContext(PostContext);
   const [loading, setLoading] = useState(true);
 
@@ -12,6 +12,7 @@ export default function Posts() {
     const fetchPosts = async () => {
       try {
         const response = await axios.get('/api/getAllPosts');
+        console.log(response)
         setPOSTS(response.data); // Update POSTS context with fetched data
         setLoading(false); // Set loading state to false after fetching data
       } catch (error) {

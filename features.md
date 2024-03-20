@@ -1,0 +1,9 @@
+- Relevant content hona chahiye content Boht important HOTA hai.
+- relevant icons ho
+- Aur buttons wagaira bhi ho colorfully.
+- important information ko high light kro.
+- clear navigation ho user k Liye.
+- background color white ho aur jis ka eyes ka masla ho vo dark mode bhi kr sky.
+- aur different fonts ho Jo k readable ho.
+- feedback system bhi important hai. Tak k customer ka pata chall sky k vo kia aspect kr Raha ha.
+- Playlist ki Image
