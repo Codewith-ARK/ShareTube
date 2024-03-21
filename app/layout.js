@@ -1,6 +1,7 @@
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import "./globals.css";
 import Nav from "@/Components/Header/Nav";
+import Circle from "@/Components/Design/Circle";
 
 export const metadata = {
   title: "YT Playlist Sharer",
@@ -14,6 +15,7 @@ export default function RootLayout({ children }) {
         <body>
           <Nav />
           {children}
+          <Circle />
         </body>
       </UserProvider>
     </html>
