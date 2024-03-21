@@ -1,34 +1,32 @@
 import { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
 import Post from '../Post/Post';
 import { PostContext } from '@/context/postContext';
 
 export default function AllPost() {
-  const { POSTS, setPOSTS } = useContext(PostContext);
+  const { posts, setPosts } = useContext(PostContext);
+  const { fetchPosts } = useContext(PostContext)
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
-    // Function to fetch posts from the API
-    const fetchPosts = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get('/api/getAllPosts');
-        console.log(response)
-        setPOSTS(response.data); // Update POSTS context with fetched data
-        setLoading(false); // Set loading state to false after fetching data
+        const response = await fetchPosts();
+        setPosts(response);
+        setLoading(false);
       } catch (error) {
-        console.error('Error fetching posts:', error);
+        console.error("Error fetching posts:", error);
+        setLoading(false); // Set loading state to false even if an error occurs
       }
     };
-
-    fetchPosts(); // Call the fetchPosts function when the component mounts
-  }, []); // Run this effect only once when the component mounts
-
+  
+    fetchData(); // Call the fetchData function when the component mounts
+  }, []);
+  
   const renderPosts = () => {
     if (loading) {
       return <p>Loading...</p>;
-    } else if (POSTS.length > 0) {
-      return POSTS.map((item, key) => (
-        <Post key={key} title={item.title} link={item.link} category={item.category}/>
+    } else if (posts.length > 0) {
+      return posts.map((item, key) => (
+        <Post key={key} id={item.id} title={item.title} link={item.link} category={item.category} />
       ));
     } else {
       return <p>No posts</p>;

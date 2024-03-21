@@ -13,9 +13,7 @@ export default function MakePost() {
   const submitHandler = (e) => {
     e.preventDefault();
     const data = { title: postTitle, link: postLink, category: postCategory }
-    console.log(data)
     axios.post('/api/addPost', data)
-      .then(res => console.log(res))
       .catch(e => console.log(e))
     // setPOSTS([...POSTS, { title: postTitle, link: postLink }]);
 
