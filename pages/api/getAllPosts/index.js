@@ -7,9 +7,7 @@ export default async (req, res) => {
     // const client = await pool.connect();
     // const result = await client.query("SELECT * from posts");
     // client.release();
-
     const result = await fetchAllPost();
-    console.log(result)
     res.status(200).json(result);
   } catch (err) {
     console.error("Error fetching data:", err);
