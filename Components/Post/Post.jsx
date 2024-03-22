@@ -4,22 +4,13 @@ import { LuThumbsUp, LuThumbsDown, LuMoreVertical, LuTrash2 } from "react-icons/
 
 
 export default function Post({ title, link, category, id }) {
-
-  const { deletePost, setPosts, posts } = useContext(PostContext);
-
+  const { deletePost } = useContext(PostContext);
   async function handleDelete() {
-    // Delete the post from the DB
     deletePost(id)
-
-    // find the index of the deleted post
-    const postIndex = (posts, id) => posts.findIndex(obj => obj.id === id);
-    const updatedPosts = [...posts];
-    updatedPosts.splice(postIndex, 1); // remove the deleted posts
-    setPosts(updatedPosts); // update the local posts variable
   }
-
   return (
-    <div className='flex flex-col justify-between gap-3 p-3 relative overflow-clip rounded-2xl bg-gradient-to-b from-white/[0.6] to-white/[0.3]'>
+    <div className='flex flex-col justify-between gap-3 p-3 relative overflow-clip
+    rounded-2xl bg-gradient-to-b from-white/[0.6] to-white/[0.3]'>
       <h2 className='font-bold text-lg'>{title}</h2>
       <div className='top-0 right-0 rounded-bl-xl text-sm bg-slate-100 w-fit absolute px-4 py-1 '>{category ? category : "Default"}</div>
       <a href={link} className='text-sm text-blue-600 underline'>{link}</a>
@@ -34,7 +25,7 @@ export default function Post({ title, link, category, id }) {
         </div>
         <div className='flex gap-2'>
           <button onClick={handleDelete} >
-            <LuTrash2 className='hover:text-gray-600' />
+            <LuTrash2 className='hover:text-gray-600'/>
           </button>
           <button>
             <LuMoreVertical title='More' />
