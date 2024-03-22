@@ -5,18 +5,21 @@ import React, { useContext, useState } from 'react'
 
 export default function MakePost() {
 
-  const { POSTS, setPOSTS } = useContext(PostContext);
+  const { posts, setPosts } = useContext(PostContext);
   const [postTitle, setPostTitle] = useState('');
   const [postLink, setPostLink] = useState('');
   const [postCategory, setPostCategory] = useState('');
 
   // Function to handle form submission
   const submitHandler = (e) => {
+
     e.preventDefault();
     const data = { title: postTitle, link: postLink, category: postCategory }
     axios.post('/api/addPost', data)
+    .then((response)=>{
+      setPosts(posts => [...posts, response.data]); // Assuming response.data is the newly added post
+    })
       .catch(e => console.log(e))
-    // setPOSTS([...POSTS, { title: postTitle, link: postLink }]);
 
     setPostTitle('');
     setPostLink('');
