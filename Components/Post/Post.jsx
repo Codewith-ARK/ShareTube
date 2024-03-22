@@ -9,22 +9,23 @@ export default function Post({ title, link, category, id }) {
     deletePost(id)
   }
   return (
-    <div className='flex flex-col gap-3 border border-gray-700 rounded-lg p-3 relative overflow-clip'>
+    <div className='flex flex-col justify-between gap-3 p-3 relative overflow-clip
+    rounded-2xl bg-gradient-to-b from-white/[0.6] to-white/[0.3]'>
       <h2 className='font-bold text-lg'>{title}</h2>
-      <div className='top-0 right-0 rounded-bl-xl bg-slate-400 w-fit absolute px-4 py-1 '>{category ? category : "Default"}</div>
-      <a href={link} className='text-sm'>{link}</a>
+      <div className='top-0 right-0 rounded-bl-xl text-sm bg-slate-100 w-fit absolute px-4 py-1 '>{category ? category : "Default"}</div>
+      <a href={link} className='text-sm text-blue-600 underline'>{link}</a>
       <div className='pt-2 flex justify-between'>
         <div className='flex gap-2'>
           <button className='p-1'>
-            <LuThumbsUp title='Thumbs Up' />
+            <LuThumbsUp title='Thumbs Up' className='hover:text-gray-600' />
           </button>
           <button className='p-1'>
-            <LuThumbsDown title='Thumbs Down' />
+            <LuThumbsDown title='Thumbs Down' className='hover:text-gray-600' />
           </button>
         </div>
         <div className='flex gap-2'>
-          <button onClick={handleDelete}>
-            <LuTrash2 />
+          <button onClick={handleDelete} >
+            <LuTrash2 className='hover:text-gray-600'/>
           </button>
           <button>
             <LuMoreVertical title='More' />

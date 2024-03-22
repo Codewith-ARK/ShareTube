@@ -36,7 +36,9 @@ export default function AllPost() {
   return (
     <section className='py-6 grid'>
       <h3 className='text-xl font-bold'>Recent Posts</h3>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-3'>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-3 px-6 py-6
+      bg-gradient-to-b from-white/[0.3] to-gray-400/[0.1] rounded-2xl border border-white/[0.3]
+      '>
         {renderPosts()}
       </div>
     </section>
