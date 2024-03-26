@@ -1,11 +1,13 @@
 import { useState, useEffect, useContext } from 'react';
 import Post from '../Post/Post';
 import { PostContext } from '@/context/postContext';
+import { useUser } from '@auth0/nextjs-auth0/client';
 
 export default function AllPost() {
 
   const { posts, setPosts, fetchPosts } = useContext(PostContext);
   const [loading, setLoading] = useState(true);
+  const {user} = useUser();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,7 +29,7 @@ export default function AllPost() {
       return <p>Loading...</p>;
     } else if (posts.length > 0) {
       return posts.map((item, key) => (
-        <Post key={key} id={item.id} title={item.title} link={item.link} category={item.category} />
+        <Post key={key} id={item.id} title={item.post_title} link={item.post_link} category={item.post_category} author={user.sid} />
       ));
     } else {
       return <p>No posts</p>;

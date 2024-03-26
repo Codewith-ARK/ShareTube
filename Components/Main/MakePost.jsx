@@ -12,7 +12,6 @@ export default function MakePost() {
 
   // Function to handle form submission
   const submitHandler = (e) => {
-
     e.preventDefault();
     const data = { title: postTitle, link: postLink, category: postCategory }
     axios.post('/api/addPost', data)
@@ -40,9 +39,12 @@ export default function MakePost() {
           value={postTitle}
           placeholder='Enter title here'
           autoComplete='off'
+          required
+          minLength={3}
           onChange={(e) => {
             setPostTitle(e.target.value)
           }} />
+          <small>{titleError}</small>
       </div>
       <div className='w-full flex items-center gap-4'>
         <LuLink2 className='text-2xl text-white'/>
@@ -53,10 +55,12 @@ export default function MakePost() {
           placeholder='https://www.youtube.com/playlist?list='
           autoComplete='off'
           value={postLink}
+          required
+          minLength={38}
           onChange={(e) => {
             setPostLink(e.target.value)
           }} />
-
+          <small>{linkError}</small>
       </div>
       <div className='w-full flex items-center gap-4'>
         <LuBookmark className='text-2xl text-white'/>
@@ -67,9 +71,12 @@ export default function MakePost() {
           placeholder='Select Category'
           autoComplete='off'
           value={postCategory}
+          required
+          minLength={3}
           onChange={(e) => {
             setPostCategory(e.target.value)
           }} />
+          <small>{catError}</small>
 
       </div>
 

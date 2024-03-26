@@ -7,11 +7,21 @@ datasource db {
   url      = env("POSTGRES_PRISMA_URL")
 }
 
+model post_comments {
+  id           Int      @id @default(autoincrement())
+  post_id      Int
+  commenter_id String?  @db.VarChar(255)
+  comment_text String
+  commented_at DateTime @default(now()) @db.Timestamp(6)
+  users        users?   @relation(fields: [commenter_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  posts        posts    @relation(fields: [post_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
 model posts {
   id              Int             @id @default(autoincrement())
   post_title      String          @db.VarChar(255)
   post_link       String?         @db.VarChar(2048)
-  post_author     Int?
+  post_author     String?         @db.VarChar(255)
   post_category   String?         @db.VarChar(50)
   post_created_at DateTime        @default(now()) @db.Timestamp(6)
   post_likes      Int?            @default(0)
@@ -21,7 +31,7 @@ model posts {
 }
 
 model users {
-  id              Int             @id @default(autoincrement())
+  id              String          @id @db.VarChar(255)
   username        String          @unique @db.VarChar(50)
   name            String?         @db.VarChar(50)
   email           String          @unique @db.VarChar(100)
@@ -29,56 +39,4 @@ model users {
   user_created_at DateTime?       @db.Timestamp(6)
   post_comments   post_comments[]
   posts           posts[]
-}
-
-model post_comments {
-  id           Int      @id @default(autoincrement())
-  post_id      Int
-  commenter_id Int?
-  comment_text String
-  commented_at DateTime @default(now()) @db.Timestamp(6)
-  users        users?   @relation(fields: [commenter_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  posts        posts    @relation(fields: [post_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-}
-generator client {
-  provider = "prisma-client-js"
-}
-
-datasource db {
-  provider = "postgresql"
-  url      = env("POSTGRES_PRISMA_URL")
-}
-
-model posts {
-  id              Int             @id @default(autoincrement())
-  post_title      String          @db.VarChar(255)
-  post_link       String?         @db.VarChar(2048)
-  post_author     Int?
-  post_category   String?         @db.VarChar(50)
-  post_created_at DateTime        @default(now()) @db.Timestamp(6)
-  post_likes      Int?            @default(0)
-  post_dislikes   Int?            @default(0)
-  post_comments   post_comments[]
-  users           users?          @relation(fields: [post_author], references: [id], onDelete: NoAction, onUpdate: NoAction)
-}
-
-model users {
-  id              Int             @id @default(autoincrement())
-  username        String          @unique @db.VarChar(50)
-  name            String?         @db.VarChar(50)
-  email           String          @unique @db.VarChar(100)
-  user_bio        String?
-  user_created_at DateTime?       @db.Timestamp(6)
-  post_comments   post_comments[]
-  posts           posts[]
-}
-
-model post_comments {
-  id           Int      @id @default(autoincrement())
-  post_id      Int
-  commenter_id Int?
-  comment_text String
-  commented_at DateTime @default(now()) @db.Timestamp(6)
-  users        users?   @relation(fields: [commenter_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  posts        posts    @relation(fields: [post_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 }

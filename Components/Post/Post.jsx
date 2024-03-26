@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import { LuThumbsUp, LuThumbsDown, LuMoreVertical, LuTrash2 } from "react-icons/lu";
 
 
-export default function Post({ title, link, category, id }) {
+export default function Post({ title, link, category, id, author }) {
 
   const { deletePost, setPosts, posts } = useContext(PostContext);
 
