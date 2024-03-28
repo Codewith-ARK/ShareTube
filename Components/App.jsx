@@ -10,10 +10,14 @@ export default function App() {
 
   return (
     <>
-      <div className='grid grid-cols-4 gap-y-6 gap-x-5 overflow-x-hidden'>
-        <div><SideNav /></div>
+      <div className='grid grid-cols-1 p-4 md:grid-cols-4 md:p-0 gap-y-6 gap-x-5 overflow-x-hidden'>
+        <div>
+          {/* <SideNav /> */}
+        </div>
         <div className='col-span-2'><Main /></div>
-        <div><Dashboard /></div>
+        <div>
+          {/* <Dashboard /> */}
+        </div>
       </div>
     </>
   )

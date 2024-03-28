@@ -44,7 +44,6 @@ export default function MakePost() {
           onChange={(e) => {
             setPostTitle(e.target.value)
           }} />
-          <small>{titleError}</small>
       </div>
       <div className='w-full flex items-center gap-4'>
         <LuLink2 className='text-2xl text-white'/>
@@ -60,7 +59,6 @@ export default function MakePost() {
           onChange={(e) => {
             setPostLink(e.target.value)
           }} />
-          <small>{linkError}</small>
       </div>
       <div className='w-full flex items-center gap-4'>
         <LuBookmark className='text-2xl text-white'/>
@@ -76,7 +74,6 @@ export default function MakePost() {
           onChange={(e) => {
             setPostCategory(e.target.value)
           }} />
-          <small>{catError}</small>
 
       </div>
 

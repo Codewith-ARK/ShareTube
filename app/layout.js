@@ -1,5 +1,6 @@
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import "./output.css";
+import "./globals.css";
 import Nav from "@/Components/Header/Nav";
 import Circle from "@/Components/Design/Circle";
 
