@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate",
-    "css":"npx tailwindcss -i ./app/globals.css -o ./app/output.css"
+    "css":"npx tailwindcss -i ./app/globals.css -o ./app/output.css --watch"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^3.5.0",
