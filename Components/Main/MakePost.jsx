@@ -1,7 +1,10 @@
 import { PostContext } from '@/context/postContext';
-import { LuType, LuBookmark, LuLink2 } from "react-icons/lu";
+import { LuType, LuLink2, LuBookmark } from "react-icons/lu";
 import axios from 'axios';
 import React, { useContext, useState } from 'react'
+import Category from './Category';
+import validateLink from '@/Utils/Form';
+import categories from './categories';
 
 export default function MakePost() {
 
@@ -13,11 +16,17 @@ export default function MakePost() {
   // Function to handle form submission
   const submitHandler = (e) => {
     e.preventDefault();
+
+    if (!validateLink(postLink)) {
+      console.error("Invalid Link");
+      return;
+    };
+
     const data = { title: postTitle, link: postLink, category: postCategory }
     axios.post('/api/addPost', data)
-    .then((response)=>{
-      setPosts(posts => [...posts, response.data]); // Assuming response.data is the newly added post
-    })
+      .then((response) => {
+        setPosts(posts => [...posts, response.data]); // Assuming response.data is the newly added post
+      })
       .catch(e => console.log(e))
 
     setPostTitle('');
@@ -31,7 +40,7 @@ export default function MakePost() {
     px-7 py-3
     '>
       <div className='w-full flex items-center gap-4'>
-        <LuType className='text-2xl text-white'/>
+        <LuType className='text-2xl text-white' />
         <input
           className='grow border-b border-transparent p-1 text-lg w-full focus:border-b focus:border-white bg-transparent outline-none'
           type="text"
@@ -46,7 +55,7 @@ export default function MakePost() {
           }} />
       </div>
       <div className='w-full flex items-center gap-4'>
-        <LuLink2 className='text-2xl text-white'/>
+        <LuLink2 className='text-2xl text-white' />
         <input
           className='grow border-b border-transparent p-1 text-base w-full focus:border-b focus:border-white bg-transparent outline-none'
           type="text"
@@ -61,6 +70,19 @@ export default function MakePost() {
           }} />
       </div>
       <div className='w-full flex items-center gap-4'>
+        <LuBookmark className='text-2xl text-white' />
+        <select
+          className="bg-transparent border border-white rounded-lg"
+          onChange={e => { setPostCategory(e.target.value) }}
+          required
+        >
+          {categories.map((category, index) => (
+            <option key={index} value={`${category.emoji} ${category.name}`}>{category.emoji} {category.name}</option>
+          ))}
+        </select>
+      </div>
+
+      {/* <div className='w-full flex items-center gap-4'>
         <LuBookmark className='text-2xl text-white'/>
         <input
           className='border-b border-white p-1 text-base bg-transparent outline-none'
@@ -75,7 +97,7 @@ export default function MakePost() {
             setPostCategory(e.target.value)
           }} />
 
-      </div>
+      </div> */}
 
       <button
         type="submit"

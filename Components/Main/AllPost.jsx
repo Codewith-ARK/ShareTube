@@ -29,7 +29,7 @@ export default function AllPost() {
       return <p>Loading...</p>;
     } else if (posts.length > 0) {
       return posts.map((item, key) => (
-        <Post key={key} id={item.id} title={item.post_title} link={item.post_link} category={item.post_category} author={user.sid} />
+        <Post key={key} id={item.id} title={item.post_title} link={item.post_link} category={item.post_category} likeCount={item.post_likes} dislikeCount={item.post_dislikes} author={user.sid} />
       ));
     } else {
       return <p>No posts</p>;

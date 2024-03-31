@@ -1,9 +1,9 @@
 import { PostContext } from '@/context/postContext';
 import React, { useContext } from 'react'
-import { LuThumbsUp, LuThumbsDown, LuMoreVertical, LuTrash2 } from "react-icons/lu";
+import { LuThumbsUp, LuThumbsDown, LuMoreVertical, LuTrash2, LuArrowUpRight } from "react-icons/lu";
 
 
-export default function Post({ title, link, category, id, author }) {
+export default function Post({ title, link, category, id, likeCount, dislikeCount, author }) {
 
   const { deletePost, setPosts, posts } = useContext(PostContext);
 
@@ -19,17 +19,19 @@ export default function Post({ title, link, category, id, author }) {
   }
 
   return (
-    <div className='flex flex-col justify-between gap-3 p-3 relative overflow-clip rounded-2xl bg-gradient-to-b from-white/[0.6] to-white/[0.3]'>
+    <div className='flex flex-col justify-between gap-3 p-3 relative overflow-clip max-h-fit rounded-2xl bg-gradient-to-b from-white/[0.6] to-white/[0.3]'>
       <h2 className='font-bold text-lg'>{title}</h2>
       <div className='top-0 right-0 rounded-bl-xl text-sm bg-slate-100 w-fit absolute px-4 py-1 '>{category ? category : "Default"}</div>
-      <a href={link} className='text-sm text-blue-600 underline'>{link}</a>
-      <div className='pt-2 flex justify-between'>
+      <a href={link} target='_blank' className='text-sm text-blue-600 underline'>Take me there <LuArrowUpRight className='inline-block' /></a>
+      {/* <div className='pt-2 flex justify-between'>
         <div className='flex gap-2'>
-          <button className='p-1'>
+          <button className='p-1 flex gap-1 items-center'>
             <LuThumbsUp title='Thumbs Up' className='hover:text-gray-600' />
+            <p className='text-gray-600'>{likeCount}</p>
           </button>
-          <button className='p-1'>
+          <button className='p-1 flex gap-1 items-center'>
             <LuThumbsDown title='Thumbs Down' className='hover:text-gray-600' />
+            <p className='text-gray-600'>{dislikeCount}</p>
           </button>
         </div>
         <div className='flex gap-2'>
@@ -40,7 +42,7 @@ export default function Post({ title, link, category, id, author }) {
             <LuMoreVertical title='More' />
           </button>
         </div>
-      </div>
+      </div> */}
 
     </div>
   )
