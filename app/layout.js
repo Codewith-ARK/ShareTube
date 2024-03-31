@@ -5,6 +5,7 @@ import Nav from "@/Components/Header/Nav";
 import Circle from "@/Components/Design/Circle";
 
 import { Poppins } from "next/font/google";
+import GithubBanner from "@/Components/Banner/GithubBanner";
 const font = Poppins({
   subsets: ["latin"],
   display: "swap",
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
           <Nav />
           {children}
           <Circle />
+          <GithubBanner />
         </body>
       </UserProvider>
     </html>

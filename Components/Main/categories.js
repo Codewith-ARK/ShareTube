@@ -1,4 +1,5 @@
 const categories = [
+  {name:'select', emoji:''},
   { name: 'Gaming', emoji: '🎮' },
   { name: 'Entertainment', emoji: '🎬' },
   { name: 'Music', emoji: '🎵' },

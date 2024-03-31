@@ -10,7 +10,7 @@ export default function App() {
 
   return (
     <>
-      <div className='grid grid-cols-1 p-4 lg:grid-cols-4 md:p-0 gap-y-6 gap-x-5 overflow-x-hidden'>
+      <div className='grid lg:grid-cols-4 md:grid-cols-4 grid-cols-1 p-4  md:p-0 gap-y-6 gap-x-5 overflow-x-hidden'>
         <div>
           {/* <SideNav /> */}
         </div>
