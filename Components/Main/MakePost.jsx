@@ -2,7 +2,6 @@ import { PostContext } from '@/context/postContext';
 import { LuType, LuLink2, LuBookmark } from "react-icons/lu";
 import axios from 'axios';
 import React, { useContext, useState } from 'react'
-import Category from './Category';
 import validateLink from '@/Utils/Form';
 import categories from './categories';
 
